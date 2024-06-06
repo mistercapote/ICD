@@ -1,9 +1,8 @@
 #Import openAI
 from openai import OpenAI
-client = OpenAI(api_key="sk-proj-ojCZAlob0m5GVMbjhj5YT3BlbkFJvWELfJ1tHGqLjAEKS6fP")
 
-#Funcao para solicitar palavra ao ChatGPT
-def make(prompt, model = "gpt-3.5-turbo-0125", max_tokens = 100, temperature = 1):
+#Funcao para solicitar palavra a ChatGPT
+def make(client, prompt, model = "gpt-3.5-turbo-0125", max_tokens = 100, temperature = 1):
     resposta = client.chat.completions.create(
         messages = prompt,
         model = model,
@@ -14,7 +13,7 @@ def make(prompt, model = "gpt-3.5-turbo-0125", max_tokens = 100, temperature = 1
     return resposta.choices[0].message.content
 
 #Funcao para pegar parametros passados pelo usuario e solicitar palavra
-def get(difficulty = "Media", lenght = 5, language = "Ingles", context = "qualquer"):
+def get(chave, difficulty = "Media", lenght = 5, language = "Ingles", context = "qualquer"):
     if(difficulty==None or difficulty==""):
         difficulty = "Media"
     if(lenght==None or lenght==""):
@@ -24,8 +23,9 @@ def get(difficulty = "Media", lenght = 5, language = "Ingles", context = "qualqu
     if(context==None or context==""):
         context = "qualquer"
 
+    client = OpenAI(api_key=chave)
     prompt = [{"role":"user", "content":f"Gere uma palavra de exatas {lenght} letras em {language} relacionada a um contexto {context} para um jogo de forca na dificuldade {difficulty}. Retorne apenas a palavra sem acentuação, sem pontuação e em minúsculo."}]
-    return make(prompt)
+    return make(client, prompt)
     
 
 

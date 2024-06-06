@@ -13,9 +13,10 @@ def play(usuario, setting):
 
     #Iniciar a palavra
     if len(setting) == 0:
-        word = wd.get()
+        word = wd.get(chave)
     else:
-        word = wd.get(difficulty = setting.get("difficulty"),
+        word = wd.get(chave,
+                      difficulty = setting.get("difficulty"),
                       lenght = setting.get("lenght"), 
                       language = setting.get("language"), 
                       context = setting.get("context")
@@ -88,16 +89,13 @@ def settings():
     setting["context"] = input("Tema: ")
     return setting
 
-
 #Iniciar o programa:
-def main():
-    usuario = input("Nome de usuario: ")
-    entrada = input("Digite J para Jogar ou C para configurações: ").lower()
-    setting = dict()
-    if entrada == "j":
-        play(usuario, setting)
-    elif entrada == "c":
-        setting = settings()
-        play(usuario, setting)
-   
-main()
+usuario = input("Nome de usuario: ")
+chave = input("Chave OPENAI: ")
+entrada = input("Digite J para Jogar ou C para configurações: ").lower()
+setting = dict()
+if entrada == "j":
+    play(usuario, setting)
+elif entrada == "c":
+    setting = settings()
+    play(usuario, setting)
