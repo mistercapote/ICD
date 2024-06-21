@@ -29,3 +29,21 @@ snakecase?
 
 perpexity - ferramenta para verificar validade dos dados
 """
+
+"""
+Resumo 1 - Minerar
+Selecionar site 
+Pegar tudo sobre servico/produto~
+
+Resumo 2 - Limpar
+Limpar dados: remocao de duplicadas, valores ausentes, formatacao
+[EXTRA] criar caracteristicas adicionais
+
+Resumo 3 - Insights
+Resumir, intrepretar, agrupar, traduzir (in english, please)
+
+Resumo 4 - Output
+Exportar para CSV
+Elaborar 3 peças de análise
+
+"""
